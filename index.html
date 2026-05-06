@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Huzaifa | Software Engineer</title>
+  <meta name="description" content="High-end software engineering portfolio showcasing products, systems, and innovation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #06070b;
+      --bg-soft: #0f1220;
+      --card: rgba(255, 255, 255, 0.06);
+      --line: rgba(255, 255, 255, 0.15);
+      --text: #f5f7ff;
+      --muted: #bac3df;
+      --brand: #7c8bff;
+      --accent: #1ad1ff;
+      --ok: #3ef0b8;
+      --shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at 15% 0%, #1b2467 0%, transparent 30%),
+        radial-gradient(circle at 95% 20%, #004a65 0%, transparent 34%),
+        linear-gradient(145deg, #05060a 0%, #0a0d1b 60%, #04050b 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), 92%);
+      margin: 0 auto;
+    }
+
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: radial-gradient(ellipse at center, black 10%, transparent 75%);
+      z-index: 0;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 6, 10, 0.72);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.72rem 1.2rem;
+      font-weight: 600;
+      transition: all 0.24s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand), var(--accent));
+      color: #fff;
+      border: none;
+      box-shadow: 0 10px 30px rgba(76, 129, 255, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    section {
+      padding: 86px 0;
+    }
+
+    .hero {
+      padding-top: 80px;
+      min-height: calc(100vh - 80px);
+      display: grid;
+      align-items: center;
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 2.6rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.84rem;
+      color: #d2daf8;
+      margin-bottom: 1rem;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 6px rgba(62, 240, 184, 0.16);
+    }
+
+    h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.3rem, 6vw, 4.2rem);
+      line-height: 1.06;
+      letter-spacing: -1.1px;
+      margin-bottom: 1rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(115deg, #9ca9ff 20%, #4de8ff 70%, #57ffd0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 62ch;
+      margin-bottom: 1.8rem;
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1.9rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(90px, 1fr));
+      gap: 1rem;
+      max-width: 560px;
+    }
+
+    .stat {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .stat h3 {
+      font-size: 1.34rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat p {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .profile-card {
+      border-radius: 22px;
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      background: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      box-shadow: var(--shadow);
+    }
+
+    .avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1rem;
+      background: radial-gradient(circle at 30% 20%, #8ea7ff 0%, #15172b 55%, #090a12 100%);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      font-size: 3.2rem;
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -2px;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .section-title h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+      letter-spacing: -0.4px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 56ch;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(124, 139, 255, 0.6);
+    }
+
+    .project-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: #dbe3ff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 0.95rem;
+    }
+
+    .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .tech span {
+      font-size: 0.74rem;
+      color: #d8e2ff;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 0.22rem 0.62rem;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .stack-group h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.02rem;
+    }
+
+    .stack-group ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .stack-group li {
+      padding: 0.35rem 0.68rem;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      color: #d3dbfa;
+      font-size: 0.86rem;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      margin-bottom: 0.95rem;
+    }
+
+    .timeline li {
+      list-style: none;
+      border-left: 2px solid rgba(255, 255, 255, 0.2);
+      padding-left: 0.85rem;
+      margin-bottom: 0.9rem;
+      color: #d6defa;
+      font-size: 0.92rem;
+    }
+
+    .contact-box {
+      text-align: center;
+      border: 1px solid rgba(124, 139, 255, 0.45);
+      padding: 2rem;
+      border-radius: 20px;
+      background: linear-gradient(140deg, rgba(124, 139, 255, 0.14), rgba(26, 209, 255, 0.08));
+    }
+
+    .contact-box h2 {
+      margin-bottom: 0.6rem;
+      font-size: clamp(1.5rem, 3.1vw, 2.25rem);
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .contact-box p {
+      color: #dbe5ff;
+      max-width: 60ch;
+      margin: 0 auto 1.4rem;
+    }
+
+    footer {
+      padding: 2rem 0 2.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 970px) {
+      .hero-wrap,
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+
+      .cards,
+      .stack-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#home">Huzaifa<span>.dev</span></a>
+        <div class="nav-links">
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="btn" href="#contact">Hire Me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <p class="eyebrow"><span class="dot"></span>Open to global remote opportunities</p>
+          <h1>Designing and building <span class="gradient-text">elite software products</span> that scale.</h1>
+          <p class="lead">
+            I am Huzaifa, a software engineer focused on high-performance web apps, resilient backend systems, and
+            polished user experiences. I combine product thinking with engineering depth to ship work that moves
+            business metrics.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Selected Work</a>
+            <a href="#contact" class="btn">Book a Strategy Call</a>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <h3>28+</h3>
+              <p>Production projects delivered</p>
+            </div>
+            <div class="stat">
+              <h3>99.95%</h3>
+              <p>Service uptime across deployments</p>
+            </div>
+            <div class="stat">
+              <h3>6+ yrs</h3>
+              <p>Software engineering experience</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="profile-card">
+          <div class="avatar">HZ</div>
+          <h3>Senior Software Engineer</h3>
+          <p>
+            Specialized in full-stack engineering, API architecture, cloud deployment, and premium product delivery.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-title">
+          <h2>Featured Projects</h2>
+          <p>Case studies with measurable impact across fintech, SaaS, and enterprise products.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <span class="project-tag">Enterprise SaaS</span>
+            <h3>Orion Workflow Platform</h3>
+            <p>Reduced operations time by 63% using automation pipelines, smart scheduling, and role-based workflows.</p>
+            <div class="tech">
+              <span>React</span><span>Node.js</span><span>PostgreSQL</span><span>AWS</span>
+            </div>
+          </article>
+          <article class="card">
+            <span class="project-tag">Fintech Infrastructure</span>
+            <h3>Pulse Payment Gateway</h3>
+            <p>Built secure payment orchestration handling 2.4M+ monthly transactions with fraud-risk scoring.</p>
+            <div class="tech">
+              <span>TypeScript</span><span>Go</span><span>Kafka</span><span>Redis</span>
+            </div>
+          </article>
+          <article class="card">
+            <span class="project-tag">AI Product</span>
+            <h3>Insight Decision Engine</h3>
+            <p>Created an analytics intelligence dashboard that increased decision speed by 41% for leadership teams.</p>
+            <div class="tech">
+              <span>Next.js</span><span>Python</span><span>LLM APIs</span><span>Docker</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-title">
+          <h2>Engineering Expertise</h2>
+          <p>Modern stack mastery with deep foundations in architecture, performance, and reliability.</p>
+        </div>
+        <div class="stack-grid">
+          <article class="card stack-group">
+            <h3>Frontend Systems</h3>
+            <ul>
+              <li>React / Next.js</li><li>TypeScript</li><li>Tailwind</li><li>State Architecture</li><li>Design Systems</li>
+            </ul>
+          </article>
+          <article class="card stack-group">
+            <h3>Backend and Cloud</h3>
+            <ul>
+              <li>Node.js</li><li>Python</li><li>Go</li><li>REST + GraphQL</li><li>AWS / GCP</li><li>Microservices</li>
+            </ul>
+          </article>
+          <article class="card stack-group">
+            <h3>Data and DevOps</h3>
+            <ul>
+              <li>PostgreSQL</li><li>MongoDB</li><li>Redis</li><li>Docker</li><li>Kubernetes</li><li>CI/CD Pipelines</li>
+            </ul>
+          </article>
+          <article class="card stack-group">
+            <h3>Execution Quality</h3>
+            <ul>
+              <li>Performance Tuning</li><li>Security Practices</li><li>Testing Strategy</li><li>Observability</li><li>Mentorship</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-layout">
+        <article class="card about-card">
+          <div class="section-title">
+            <h2>About Me</h2>
+          </div>
+          <p>
+            I build software like a product owner and engineer combined: clear goals, strong architecture, excellent
+            UX, and maintainable code. My work style is fast, collaborative, and focused on business outcomes.
+          </p>
+          <p>
+            I enjoy solving complex system challenges, scaling teams with engineering standards, and shipping features
+            that users truly love.
+          </p>
+        </article>
+        <article class="card">
+          <div class="section-title">
+            <h2>Milestones</h2>
+          </div>
+          <ul class="timeline">
+            <li><strong>2025:</strong> Led platform modernization, cut cloud costs by 34% while increasing performance.</li>
+            <li><strong>2024:</strong> Architected multi-tenant SaaS serving 120k+ active users.</li>
+            <li><strong>2023:</strong> Delivered secure fintech APIs with audit-grade compliance standards.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>Let us build your next category-leading product.</h2>
+          <p>
+            Available for freelance, consulting, and full-time senior software engineering opportunities.
+            Reach out and we will turn your vision into a world-class digital experience.
+          </p>
+          <a class="btn btn-primary" href="mailto:huzaifa@example.com">huzaifa@example.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© 2026 Huzaifa. Crafted with precision and ambition.</p>
+      <p>Software Engineer | Product Builder | Systems Thinker</p>
+    </div>
+  </footer>
+</body>
+</html>
