@@ -1,611 +1,871 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Huzaifa | Software Engineer</title>
-  <meta name="description" content="High-end software engineering portfolio showcasing products, systems, and innovation." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #06070b;
-      --bg-soft: #0f1220;
-      --card: rgba(255, 255, 255, 0.06);
-      --line: rgba(255, 255, 255, 0.15);
-      --text: #f5f7ff;
-      --muted: #bac3df;
-      --brand: #7c8bff;
-      --accent: #1ad1ff;
-      --ok: #3ef0b8;
-      --shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
-      --radius: 18px;
-      --max: 1180px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>My Dearest Love</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IM+Fell+English:ital@0;1&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5ede0;
+    --parchment: #ede0c8;
+    --deep-rose: #8b3a52;
+    --dusty-rose: #c4788a;
+    --blush: #e8b4c0;
+    --gold: #b5893f;
+    --gold-light: #d4aa6a;
+    --ink: #2c1a10;
+    --ink-light: #5c3d2e;
+    --sepia: #7a5c3a;
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+  html { scroll-behavior: smooth; }
 
-    body {
-      font-family: "Inter", sans-serif;
-      background:
-        radial-gradient(circle at 15% 0%, #1b2467 0%, transparent 30%),
-        radial-gradient(circle at 95% 20%, #004a65 0%, transparent 34%),
-        linear-gradient(145deg, #05060a 0%, #0a0d1b 60%, #04050b 100%);
-      color: var(--text);
-      line-height: 1.7;
-    }
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M10 3 C10 3 14 7 14 11 A4 4 0 0 1 6 11 C6 7 10 3 10 3Z' fill='%238b3a52' opacity='0.7'/%3E%3C/svg%3E"), auto;
+  }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+  /* Parchment texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
 
-    .container {
-      width: min(var(--max), 92%);
-      margin: 0 auto;
-    }
+  /* ===== FLOATING PETALS ===== */
+  .petals-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+  }
 
-    .grid-overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 34px 34px;
-      mask-image: radial-gradient(ellipse at center, black 10%, transparent 75%);
-      z-index: 0;
-    }
+  .petal {
+    position: absolute;
+    top: -20px;
+    font-size: 12px;
+    opacity: 0;
+    animation: petalFall linear infinite;
+    color: var(--dusty-rose);
+  }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(5, 6, 10, 0.72);
-    }
+  @keyframes petalFall {
+    0% { opacity: 0; transform: translateY(-20px) rotate(0deg) translateX(0); }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(110vh) rotate(720deg) translateX(80px); }
+  }
 
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 76px;
-    }
+  /* ===== COVER PAGE ===== */
+  #cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 40px 24px;
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(196, 120, 138, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(139, 58, 82, 0.12) 0%, transparent 50%),
+      var(--cream);
+    overflow: hidden;
+  }
 
-    .logo {
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 0.5px;
-    }
+  .cover-border {
+    position: absolute;
+    inset: 16px;
+    border: 1px solid rgba(181, 137, 63, 0.4);
+    pointer-events: none;
+  }
+  .cover-border::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(181, 137, 63, 0.2);
+  }
 
-    .logo span {
-      color: var(--accent);
-    }
+  /* Corner ornaments */
+  .corner {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    color: var(--gold);
+    opacity: 0.7;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .corner-tl { top: 20px; left: 20px; }
+  .corner-tr { top: 20px; right: 20px; transform: scaleX(-1); }
+  .corner-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
+  .corner-br { bottom: 20px; right: 20px; transform: scale(-1); }
 
-    .nav-links {
-      display: flex;
-      gap: 1.6rem;
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 0.96rem;
-    }
+  .cover-ornament-top {
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 8px;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.3s forwards;
+  }
 
-    .nav-links a:hover {
-      color: var(--text);
-    }
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--sepia);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+  }
 
-    .btn {
-      display: inline-block;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0.72rem 1.2rem;
-      font-weight: 600;
-      transition: all 0.24s ease;
-    }
+  .cover-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(52px, 14vw, 88px);
+    color: var(--deep-rose);
+    line-height: 1.1;
+    text-align: center;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 1.4s ease 0.9s forwards;
+    text-shadow: 2px 3px 8px rgba(139, 58, 82, 0.15);
+  }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--brand), var(--accent));
-      color: #fff;
-      border: none;
-      box-shadow: 0 10px 30px rgba(76, 129, 255, 0.3);
-    }
+  .cover-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.2s forwards;
+    width: 100%;
+    max-width: 280px;
+  }
+  .cover-divider span { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+  .cover-divider i { color: var(--deep-rose); font-style: normal; font-size: 16px; }
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
+  .cover-date {
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    color: var(--sepia);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.4s forwards;
+  }
 
-    main {
-      position: relative;
-      z-index: 1;
-    }
+  .cover-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-light);
+    text-align: center;
+    max-width: 280px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.6s forwards;
+  }
 
-    section {
-      padding: 86px 0;
-    }
+  .open-btn {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--deep-rose);
+    border: none;
+    padding: 14px 32px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 2s forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(139, 58, 82, 0.3);
+  }
+  .open-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.15);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+  }
+  .open-btn:hover::before { left: 150%; }
+  .open-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(139, 58, 82, 0.4); }
 
-    .hero {
-      padding-top: 80px;
-      min-height: calc(100vh - 80px);
-      display: grid;
-      align-items: center;
-    }
+  /* ===== LETTER PAGE ===== */
+  #letter {
+    display: none;
+    min-height: 100vh;
+    padding: 0;
+    background:
+      radial-gradient(ellipse at 10% 10%, rgba(232, 180, 192, 0.2) 0%, transparent 40%),
+      radial-gradient(ellipse at 90% 90%, rgba(181, 137, 63, 0.1) 0%, transparent 40%),
+      var(--parchment);
+  }
 
-    .hero-wrap {
-      display: grid;
-      grid-template-columns: 1.25fr 0.9fr;
-      gap: 2.6rem;
-      align-items: center;
-    }
+  .letter-header {
+    text-align: center;
+    padding: 48px 24px 32px;
+    position: relative;
+  }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 999px;
-      padding: 0.3rem 0.8rem;
-      font-size: 0.84rem;
-      color: #d2daf8;
-      margin-bottom: 1rem;
-      background: rgba(255, 255, 255, 0.02);
-    }
+  .letter-header::after {
+    content: '❧';
+    display: block;
+    font-size: 28px;
+    color: var(--gold);
+    margin-top: 16px;
+  }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--ok);
-      box-shadow: 0 0 0 6px rgba(62, 240, 184, 0.16);
-    }
+  .letter-chapter {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: var(--sepia);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
 
-    h1 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(2.3rem, 6vw, 4.2rem);
-      line-height: 1.06;
-      letter-spacing: -1.1px;
-      margin-bottom: 1rem;
-    }
+  .letter-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(42px, 12vw, 68px);
+    color: var(--deep-rose);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
 
-    .gradient-text {
-      background: linear-gradient(115deg, #9ca9ff 20%, #4de8ff 70%, #57ffd0 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+  .letter-scroll-hint {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--sepia);
+    opacity: 0.7;
+    margin-top: 8px;
+    animation: pulse 2s ease-in-out infinite;
+  }
 
-    .lead {
-      color: var(--muted);
-      max-width: 62ch;
-      margin-bottom: 1.8rem;
-      font-size: 1.02rem;
-    }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-bottom: 1.9rem;
-    }
+  .letter-body {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+  }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(90px, 1fr));
-      gap: 1rem;
-      max-width: 560px;
-    }
+  .letter-paper {
+    background: rgba(245, 237, 224, 0.7);
+    border: 1px solid rgba(181, 137, 63, 0.25);
+    padding: 36px 28px;
+    position: relative;
+    box-shadow: 
+      0 2px 20px rgba(92, 61, 46, 0.08),
+      inset 0 0 30px rgba(181, 137, 63, 0.04);
+  }
 
-    .stat {
-      padding: 1rem;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.03);
-    }
+  .letter-paper::before {
+    content: '';
+    position: absolute;
+    left: 44px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(196, 120, 138, 0.2);
+  }
 
-    .stat h3 {
-      font-size: 1.34rem;
-      margin-bottom: 0.2rem;
-    }
+  .salutation {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 34px;
+    color: var(--deep-rose);
+    margin-bottom: 24px;
+    display: block;
+  }
 
-    .stat p {
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
+  .letter-para {
+    font-family: 'IM Fell English', serif;
+    font-size: 15px;
+    line-height: 1.95;
+    color: var(--ink);
+    margin-bottom: 22px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
 
-    .profile-card {
-      border-radius: 22px;
-      padding: 1.5rem;
-      border: 1px solid var(--line);
-      background: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-      box-shadow: var(--shadow);
-    }
+  .letter-para.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-    .avatar {
-      width: 100%;
-      aspect-ratio: 1;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 1rem;
-      background: radial-gradient(circle at 30% 20%, #8ea7ff 0%, #15172b 55%, #090a12 100%);
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      font-size: 3.2rem;
-      font-family: "Space Grotesk", sans-serif;
-      letter-spacing: -2px;
-    }
+  .letter-para em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--deep-rose);
+  }
 
-    .profile-card p {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+  .drop-cap::first-letter {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 64px;
+    float: left;
+    line-height: 0.75;
+    margin: 8px 6px 0 0;
+    color: var(--deep-rose);
+  }
 
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 1rem;
-      margin-bottom: 1.35rem;
-    }
+  .section-break {
+    text-align: center;
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 10px;
+    margin: 28px 0;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .section-break.visible { opacity: 1; }
 
-    .section-title h2 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(1.6rem, 3.4vw, 2.4rem);
-      letter-spacing: -0.4px;
-    }
+  .closing {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 32px;
+    color: var(--deep-rose);
+    text-align: right;
+    display: block;
+    margin-top: 20px;
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  .closing.visible { opacity: 1; }
 
-    .section-title p {
-      color: var(--muted);
-      max-width: 56ch;
-    }
+  /* ===== FLOATING HEARTS ===== */
+  .heart-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    background: var(--deep-rose);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(139, 58, 82, 0.4);
+    z-index: 500;
+    animation: heartbeat 1.8s ease-in-out infinite;
+  }
+  .heart-float.active { display: flex; }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(230px, 1fr));
-      gap: 1rem;
-    }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.12); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.08); }
+    70% { transform: scale(1); }
+  }
 
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 1.3rem;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
+  /* ===== FINALE PAGE ===== */
+  #finale {
+    display: none;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 48px 24px;
+    position: relative;
+    background: 
+      radial-gradient(ellipse at center, rgba(139, 58, 82, 0.12) 0%, transparent 70%),
+      var(--cream);
+    text-align: center;
+    overflow: hidden;
+  }
 
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(124, 139, 255, 0.6);
-    }
+  .finale-ornament {
+    font-size: 36px;
+    color: var(--gold);
+    margin-bottom: 24px;
+    animation: rotateGlow 4s ease-in-out infinite;
+  }
 
-    .project-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      color: #dbe3ff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 999px;
-      padding: 0.2rem 0.7rem;
-      margin-bottom: 0.8rem;
-    }
+  @keyframes rotateGlow {
+    0%, 100% { transform: scale(1) rotate(-3deg); filter: brightness(1); }
+    50% { transform: scale(1.1) rotate(3deg); filter: brightness(1.3); }
+  }
 
-    .card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.45rem;
-    }
+  .finale-title {
+    font-family: 'Pinyon Script', cursive;
+    font-size: clamp(48px, 13vw, 80px);
+    color: var(--deep-rose);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
 
-    .card p {
-      color: var(--muted);
-      font-size: 0.94rem;
-      margin-bottom: 0.95rem;
-    }
+  .finale-verse {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 2;
+    color: var(--ink-light);
+    max-width: 320px;
+    margin: 0 auto 32px;
+    border-left: 2px solid var(--blush);
+    padding-left: 20px;
+    text-align: left;
+  }
 
-    .tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
+  .finale-seal {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--deep-rose);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: var(--cream);
+    margin: 0 auto 24px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(139, 58, 82, 0.4);
+    animation: heartbeat 1.8s ease-in-out infinite;
+  }
+  .finale-seal::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(181, 137, 63, 0.4);
+  }
+  .finale-seal::after {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 1px dashed rgba(181, 137, 63, 0.25);
+  }
 
-    .tech span {
-      font-size: 0.74rem;
-      color: #d8e2ff;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      padding: 0.22rem 0.62rem;
-      background: rgba(255, 255, 255, 0.03);
-    }
+  .finale-sign {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 38px;
+    color: var(--deep-rose);
+    margin-top: 8px;
+  }
 
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(260px, 1fr));
-      gap: 1rem;
-    }
+  .finale-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--sepia);
+    margin-top: 8px;
+  }
 
-    .stack-group h3 {
-      margin-bottom: 0.75rem;
-      font-size: 1.02rem;
-    }
+  /* ===== MUSIC NOTE ===== */
+  .music-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(181, 137, 63, 0.15);
+    border: 1px solid rgba(181, 137, 63, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 500;
+    color: var(--gold);
+    transition: background 0.3s;
+  }
+  .music-toggle:hover { background: rgba(181, 137, 63, 0.25); }
 
-    .stack-group ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-    }
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    .stack-group li {
-      padding: 0.35rem 0.68rem;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      color: #d3dbfa;
-      font-size: 0.86rem;
-      background: rgba(255, 255, 255, 0.02);
-    }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 
-    .about-layout {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 1.2rem;
-    }
+  /* ===== TRANSITION OVERLAY ===== */
+  .page-transition {
+    position: fixed;
+    inset: 0;
+    background: var(--deep-rose);
+    z-index: 2000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .page-transition.active { opacity: 1; }
 
-    .about-card p {
-      color: var(--muted);
-      margin-bottom: 0.95rem;
-    }
+  /* ===== STARS / SPARKLES ===== */
+  .sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 998;
+    font-size: 14px;
+    color: var(--gold);
+    opacity: 0;
+    animation: sparkle 1.5s ease forwards;
+  }
+  @keyframes sparkle {
+    0% { opacity: 0; transform: scale(0) rotate(0deg); }
+    30% { opacity: 1; transform: scale(1.2) rotate(30deg); }
+    100% { opacity: 0; transform: scale(0.5) rotate(60deg) translateY(-40px); }
+  }
 
-    .timeline li {
-      list-style: none;
-      border-left: 2px solid rgba(255, 255, 255, 0.2);
-      padding-left: 0.85rem;
-      margin-bottom: 0.9rem;
-      color: #d6defa;
-      font-size: 0.92rem;
-    }
+  /* Wax seal intro animation */
+  .wax-seal-intro {
+    position: fixed;
+    inset: 0;
+    background: var(--ink);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    transition: opacity 1s ease;
+  }
+  .wax-seal-intro.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
 
-    .contact-box {
-      text-align: center;
-      border: 1px solid rgba(124, 139, 255, 0.45);
-      padding: 2rem;
-      border-radius: 20px;
-      background: linear-gradient(140deg, rgba(124, 139, 255, 0.14), rgba(26, 209, 255, 0.08));
-    }
+  .wax-seal {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--deep-rose);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    color: var(--cream);
+    box-shadow: 0 0 40px rgba(139, 58, 82, 0.6), inset 0 0 20px rgba(0,0,0,0.2);
+    animation: sealAppear 1s ease 0.5s both;
+    position: relative;
+  }
+  .wax-seal::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid rgba(181, 137, 63, 0.6);
+    animation: sealAppear 1s ease 0.7s both;
+  }
 
-    .contact-box h2 {
-      margin-bottom: 0.6rem;
-      font-size: clamp(1.5rem, 3.1vw, 2.25rem);
-      font-family: "Space Grotesk", sans-serif;
-    }
+  @keyframes sealAppear {
+    from { transform: scale(0) rotate(-180deg); opacity: 0; }
+    to { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
 
-    .contact-box p {
-      color: #dbe5ff;
-      max-width: 60ch;
-      margin: 0 auto 1.4rem;
-    }
+  .seal-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(245, 237, 224, 0.7);
+    letter-spacing: 4px;
+    animation: fadeIn 1s ease 1.5s both;
+  }
 
-    footer {
-      padding: 2rem 0 2.2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 970px) {
-      .hero-wrap,
-      .about-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .cards {
-        grid-template-columns: repeat(2, minmax(220px, 1fr));
-      }
-    }
-
-    @media (max-width: 700px) {
-      .nav-links {
-        display: none;
-      }
-
-      .cards,
-      .stack-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stats {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  </style>
+  .seal-tap-hint {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(245, 237, 224, 0.5);
+    animation: pulse 2s ease 2s infinite;
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
-  <div class="grid-overlay" aria-hidden="true"></div>
 
-  <header>
-    <div class="container">
-      <nav>
-        <a class="logo" href="#home">Huzaifa<span>.dev</span></a>
-        <div class="nav-links">
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <a class="btn" href="#contact">Hire Me</a>
-      </nav>
+<!-- Wax seal intro -->
+<div class="wax-seal-intro" id="waxIntro" onclick="dismissIntro()">
+  <div class="wax-seal">♥</div>
+  <div class="seal-text">A Letter From my Heart</div>
+  <div class="seal-tap-hint">~ tap to open ~</div>
+</div>
+
+<!-- Falling petals -->
+<div class="petals-container" id="petals"></div>
+
+<!-- Page transition overlay -->
+<div class="page-transition" id="pageTransition"></div>
+
+<!-- Heart button -->
+<div class="heart-float" id="heartBtn" onclick="showFinale()">♥</div>
+
+<!-- Music toggle (decorative) -->
+<div class="music-toggle" id="musicToggle" title="♪">♪</div>
+
+<!-- COVER PAGE -->
+<section id="cover">
+  <div class="cover-border"></div>
+  <div class="corner corner-tl">✦</div>
+  <div class="corner corner-tr">✦</div>
+  <div class="corner corner-bl">✦</div>
+  <div class="corner corner-br">✦</div>
+
+  <div class="cover-ornament-top">✦ ✦ ✦</div>
+  <div class="cover-subtitle">A Most Sincere Declaration</div>
+  <div class="cover-title">My Dearest<br>Momina</div>
+
+  <div class="cover-divider">
+    <span></span>
+    <i>❧</i>
+    <span></span>
+  </div>
+
+  <div class="cover-date">On This, Your Birthday</div>
+  <div class="cover-tagline">"There has not been one evening since then where I did not miss you in some quiet way."</div>
+
+  <button class="open-btn" onclick="openLetter()">Open the Letter</button>
+</section>
+
+<!-- LETTER PAGE -->
+<section id="letter">
+  <div class="letter-header">
+    <div class="letter-chapter">to My Most Beloved Momina Kayni</div>
+    <div class="letter-title">A Letter<br>Most Sincere</div>
+    <div class="letter-scroll-hint">↓ scroll gently ↓</div>
+  </div>
+
+  <div class="letter-body">
+    <div class="letter-paper">
+      <span class="salutation">My Dearest Love,</span>
+
+      <p class="letter-para drop-cap" data-delay="0">
+        If I had the gift of writing beautiful words the way poets once did, I would still fail to explain what your presence does to my heart.
+      </p>
+
+      <p class="letter-para" data-delay="100">
+        Today is your birthday, and as I sit here thinking of you, I realize something I have known since the 6th class <em>my heart has never truly belonged to anyone else.</em> Not for a single day. Not for a single night.
+      </p>
+
+      <div class="section-break">· · ✦ · ·</div>
+
+      <p class="letter-para" data-delay="200">
+        There has not been one evening since then where I did not miss you in some quiet way.
+      </p>
+
+      <p class="letter-para" data-delay="300">
+        Some people speak of love as if it arrives suddenly, like a storm. But loving you was softer than that. It was slow, certain, and endless. <em>Like the sunrise that never forgets to return.</em>
+      </p>
+
+      <div class="section-break">· · ✦ · ·</div>
+
+      <p class="letter-para" data-delay="100">
+        You have become a part of my every thought. Your laughter stays with me long after our conversations end. Your name lives in my mind like a favourite line from a novel I could read a thousand times and still fall in love with.
+      </p>
+
+      <p class="letter-para" data-delay="200">
+        And perhaps this will sound foolishly romantic, but it is true when you are near me, I feel alive in ways I cannot explain. The world feels lighter. Breathing feels easier. <em>Existing feels beautiful.</em>
+      </p>
+
+      <div class="section-break">· · ✦ · ·</div>
+
+      <p class="letter-para" data-delay="100">
+        Your presence carries peace into my restless heart.
+      </p>
+
+      <p class="letter-para" data-delay="200">
+        I often wonder if you know how deeply you are loved. How even after all these years, I still look at you with the same admiration, the same softness, the same quiet amazement. <em>As if my heart recognized yours long before I understood what love truly was.</em>
+      </p>
+
+      <div class="section-break">· · ✦ · ·</div>
+
+      <p class="letter-para" data-delay="100">
+        If life allows me one lasting happiness, I think it would simply be this: to spend ordinary days beside you. To hear your voice at the end of long evenings. To watch you smile over little things. To grow older while still loving you exactly like this.
+      </p>
+
+      <p class="letter-para" data-delay="200">
+        <em>You are, and always will be, my favourite thought.</em>
+      </p>
+
+      <div class="section-break">· · ✦ · ·</div>
+
+      <p class="letter-para" data-delay="100">
+        So on your birthday, I do not only wish you happiness. I wish you a life filled with gentle mornings, beautiful dreams, and a love that reminds you every day how precious you are to someone.
+      </p>
+
+      <p class="letter-para" data-delay="200">
+        And if destiny is kind to me, perhaps one day I will be allowed to call that happiness mine forever.
+      </p>
+
+      <div class="section-break">· · ✦ · ·</div>
+
+      <p class="letter-para" data-delay="100" style="text-align:center; font-family:'IM Fell English', serif; font-style:italic; font-size:18px; color:var(--deep-rose);">
+        Happy Birthday, My beloved Momina kayani.
+      </p>
+
+      <span class="closing">Yours,<br>Always & Completely Zulqarnain kayani.</span>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="container hero-wrap">
-        <div>
-          <p class="eyebrow"><span class="dot"></span>Open to global remote opportunities</p>
-          <h1>Designing and building <span class="gradient-text">elite software products</span> that scale.</h1>
-          <p class="lead">
-            I am Huzaifa, a software engineer focused on high-performance web apps, resilient backend systems, and
-            polished user experiences. I combine product thinking with engineering depth to ship work that moves
-            business metrics.
-          </p>
-          <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary">View Selected Work</a>
-            <a href="#contact" class="btn">Book a Strategy Call</a>
-          </div>
-          <div class="stats">
-            <div class="stat">
-              <h3>28+</h3>
-              <p>Production projects delivered</p>
-            </div>
-            <div class="stat">
-              <h3>99.95%</h3>
-              <p>Service uptime across deployments</p>
-            </div>
-            <div class="stat">
-              <h3>6+ yrs</h3>
-              <p>Software engineering experience</p>
-            </div>
-          </div>
-        </div>
+<!-- FINALE PAGE -->
+<section id="finale">
+  <div class="finale-ornament">✦</div>
 
-        <aside class="profile-card">
-          <div class="avatar">HZ</div>
-          <h3>Senior Software Engineer</h3>
-          <p>
-            Specialized in full-stack engineering, API architecture, cloud deployment, and premium product delivery.
-          </p>
-        </aside>
-      </div>
-    </section>
+  <div class="finale-title">Happy Birthday,<br>My Love</div>
 
-    <section id="projects">
-      <div class="container">
-        <div class="section-title">
-          <h2>Featured Projects</h2>
-          <p>Case studies with measurable impact across fintech, SaaS, and enterprise products.</p>
-        </div>
-        <div class="cards">
-          <article class="card">
-            <span class="project-tag">Enterprise SaaS</span>
-            <h3>Orion Workflow Platform</h3>
-            <p>Reduced operations time by 63% using automation pipelines, smart scheduling, and role-based workflows.</p>
-            <div class="tech">
-              <span>React</span><span>Node.js</span><span>PostgreSQL</span><span>AWS</span>
-            </div>
-          </article>
-          <article class="card">
-            <span class="project-tag">Fintech Infrastructure</span>
-            <h3>Pulse Payment Gateway</h3>
-            <p>Built secure payment orchestration handling 2.4M+ monthly transactions with fraud-risk scoring.</p>
-            <div class="tech">
-              <span>TypeScript</span><span>Go</span><span>Kafka</span><span>Redis</span>
-            </div>
-          </article>
-          <article class="card">
-            <span class="project-tag">AI Product</span>
-            <h3>Insight Decision Engine</h3>
-            <p>Created an analytics intelligence dashboard that increased decision speed by 41% for leadership teams.</p>
-            <div class="tech">
-              <span>Next.js</span><span>Python</span><span>LLM APIs</span><span>Docker</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+  <div class="finale-verse">
+    "When you are near me,<br>
+    I feel alive in ways<br>
+    I cannot explain.<br>
+    The world feels lighter.<br>
+    Breathing feels easier.<br>
+    Existing feels beautiful."
+  </div>
 
-    <section id="skills">
-      <div class="container">
-        <div class="section-title">
-          <h2>Engineering Expertise</h2>
-          <p>Modern stack mastery with deep foundations in architecture, performance, and reliability.</p>
-        </div>
-        <div class="stack-grid">
-          <article class="card stack-group">
-            <h3>Frontend Systems</h3>
-            <ul>
-              <li>React / Next.js</li><li>TypeScript</li><li>Tailwind</li><li>State Architecture</li><li>Design Systems</li>
-            </ul>
-          </article>
-          <article class="card stack-group">
-            <h3>Backend and Cloud</h3>
-            <ul>
-              <li>Node.js</li><li>Python</li><li>Go</li><li>REST + GraphQL</li><li>AWS / GCP</li><li>Microservices</li>
-            </ul>
-          </article>
-          <article class="card stack-group">
-            <h3>Data and DevOps</h3>
-            <ul>
-              <li>PostgreSQL</li><li>MongoDB</li><li>Redis</li><li>Docker</li><li>Kubernetes</li><li>CI/CD Pipelines</li>
-            </ul>
-          </article>
-          <article class="card stack-group">
-            <h3>Execution Quality</h3>
-            <ul>
-              <li>Performance Tuning</li><li>Security Practices</li><li>Testing Strategy</li><li>Observability</li><li>Mentorship</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
+  <div class="finale-seal">♥</div>
 
-    <section id="about">
-      <div class="container about-layout">
-        <article class="card about-card">
-          <div class="section-title">
-            <h2>About Me</h2>
-          </div>
-          <p>
-            I build software like a product owner and engineer combined: clear goals, strong architecture, excellent
-            UX, and maintainable code. My work style is fast, collaborative, and focused on business outcomes.
-          </p>
-          <p>
-            I enjoy solving complex system challenges, scaling teams with engineering standards, and shipping features
-            that users truly love.
-          </p>
-        </article>
-        <article class="card">
-          <div class="section-title">
-            <h2>Milestones</h2>
-          </div>
-          <ul class="timeline">
-            <li><strong>2025:</strong> Led platform modernization, cut cloud costs by 34% while increasing performance.</li>
-            <li><strong>2024:</strong> Architected multi-tenant SaaS serving 120k+ active users.</li>
-            <li><strong>2023:</strong> Delivered secure fintech APIs with audit-grade compliance standards.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+  <div class="finale-sign">Forever yours</div>
+  <div class="finale-date">with all that I am · always</div>
+</section>
 
-    <section id="contact">
-      <div class="container">
-        <div class="contact-box">
-          <h2>Let us build your next category-leading product.</h2>
-          <p>
-            Available for freelance, consulting, and full-time senior software engineering opportunities.
-            Reach out and we will turn your vision into a world-class digital experience.
-          </p>
-          <a class="btn btn-primary" href="mailto:huzaifa@example.com">huzaifa@example.com</a>
-        </div>
-      </div>
-    </section>
-  </main>
+<script>
+  // Create petals
+  const petalsContainer = document.getElementById('petals');
+  const petalSymbols = ['✿', '❀', '✾', '❁', '♥', '✦'];
+  
+  for (let i = 0; i < 18; i++) {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    petal.textContent = petalSymbols[Math.floor(Math.random() * petalSymbols.length)];
+    petal.style.left = Math.random() * 100 + '%';
+    petal.style.animationDuration = (8 + Math.random() * 12) + 's';
+    petal.style.animationDelay = (Math.random() * 10) + 's';
+    petal.style.fontSize = (8 + Math.random() * 10) + 'px';
+    petal.style.opacity = 0.3 + Math.random() * 0.4;
+    petalsContainer.appendChild(petal);
+  }
 
-  <footer>
-    <div class="container footer-inner">
-      <p>© 2026 Huzaifa. Crafted with precision and ambition.</p>
-      <p>Software Engineer | Product Builder | Systems Thinker</p>
-    </div>
-  </footer>
+  // Dismiss intro
+  function dismissIntro() {
+    const intro = document.getElementById('waxIntro');
+    intro.classList.add('hidden');
+    setTimeout(() => intro.remove(), 1100);
+  }
+
+  setTimeout(() => {
+    const intro = document.getElementById('waxIntro');
+    if (intro) {
+      const hint = intro.querySelector('.seal-tap-hint');
+      hint.style.display = 'block';
+    }
+  }, 2500);
+
+  // Open letter with transition
+  function openLetter() {
+    const t = document.getElementById('pageTransition');
+    t.classList.add('active');
+    setTimeout(() => {
+      document.getElementById('cover').style.display = 'none';
+      document.getElementById('letter').style.display = 'block';
+      document.getElementById('heartBtn').classList.add('active');
+      t.classList.remove('active');
+      initScrollObserver();
+      window.scrollTo(0, 0);
+    }, 600);
+  }
+
+  // Scroll observer for letter paragraphs
+  function initScrollObserver() {
+    const elements = document.querySelectorAll('.letter-para, .section-break, .closing');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, parseInt(delay));
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    elements.forEach(el => observer.observe(el));
+  }
+
+  // Show finale
+  function showFinale() {
+    const t = document.getElementById('pageTransition');
+    t.classList.add('active');
+    setTimeout(() => {
+      document.getElementById('letter').style.display = 'none';
+      document.getElementById('heartBtn').classList.remove('active');
+      const finale = document.getElementById('finale');
+      finale.style.display = 'flex';
+      t.classList.remove('active');
+      launchHearts();
+    }, 600);
+  }
+
+  // Launch heart burst for finale
+  function launchHearts() {
+    const symbols = ['♥', '✦', '✿', '❀'];
+    for (let i = 0; i < 24; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'sparkle';
+        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.left = (10 + Math.random() * 80) + 'vw';
+        el.style.top = (10 + Math.random() * 80) + 'vh';
+        el.style.fontSize = (10 + Math.random() * 14) + 'px';
+        el.style.color = Math.random() > 0.5 ? 'var(--deep-rose)' : 'var(--gold)';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 1600);
+      }, i * 80);
+    }
+  }
+
+  // Sparkle on tap anywhere in letter
+  document.addEventListener('click', (e) => {
+    if (document.getElementById('letter').style.display !== 'none') {
+      createSparkleAt(e.clientX, e.clientY);
+    }
+  });
+
+  function createSparkleAt(x, y) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.textContent = Math.random() > 0.5 ? '✦' : '♥';
+    sparkle.style.left = x + 'px';
+    sparkle.style.top = y + 'px';
+    sparkle.style.color = Math.random() > 0.5 ? 'var(--gold)' : 'var(--dusty-rose)';
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1600);
+  }
+</script>
 </body>
 </html>
